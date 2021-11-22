@@ -1,0 +1,49 @@
+#include "../LIB/BIT_MATH.h"
+#include "../LIB/STD_TYPES.h"
+
+#include "../MCAL/DIO/DIO_interface.h"
+#include "../HAL/LCD/LCD_interface.h"
+#include "../MCAL/USART/USART_interface.h"
+#include "../MCAL/USART/USART_private.h"
+#define F_CPU	8000000UL
+#include <util/delay.h>
+void main(void)
+{
+	LCD_voidInit();
+
+	/*Initialize Pins To Be PD0(Rx) -> Input Float, PD1(Tx) -> Output*/
+	DIO_voidSetPinDirection(PORTD, PIN0, INPUT);		// Rx
+	DIO_voidSetPinDirection(PORTD, PIN1, OUTPUT);		// Tx
+	/*Initialize Pin 0 Port A To Be Output*/
+	DIO_voidSetPinDirection(PORTB, PIN0, OUTPUT);
+	DIO_voidSetPinDirection(PORTB, PIN1, OUTPUT);
+	/*Initialize USART*/
+	USART_voidInit();
+
+	volatile u8 Local_u8ReceivedData;
+	while(1)
+	{
+//		LCD_voidSendCommand(0x01);
+//		LCD_voidGoToXY(0,0);
+//		LCD_voidSendNumber(UDR);
+//		LCD_voidGoToXY(1,0);
+//		LCD_voidSendNumber(UBRRH);
+
+		/*Receive Character Over USART*/
+//		Local_u8ReceivedData = USART_voidRecievedata();
+		USART_voidTransmitData('1');
+//		_delay_ms(1000);
+//		if(Local_u8ReceivedData == '1')
+//		{
+//			/*Turn On LED */
+//			DIO_voidSetPinValue(PORTB, PIN0, HIGH);
+//		}
+//		else if(Local_u8ReceivedData == '2')
+//		{
+//			/*Turn Off LED*/
+//			DIO_voidSetPinValue(PORTB, PIN0, LOW);
+//		}
+//
+//		_delay_ms(1000);
+	}
+}

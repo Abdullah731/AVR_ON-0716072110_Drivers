@@ -1,0 +1,83 @@
+/*********************************************************************************************/
+/*	File name	:	USART_program.c
+/*	Date		:	13, JAN 2020
+/*	Version		:	v1.0
+/*	Description	:	This file will contain the code for USART driver
+/********************************************************************************************/
+
+/*		Library Inclusion		*/
+#include "../../LIB/BIT_MATH.h"
+#include "../../LIB/STD_TYPES.h"
+
+
+/*		No lawer layers		*/
+
+
+/*		Self Files			*/
+#include "USART_interface.h"
+#include "USART_private.h"
+#include "USART_config.h"
+
+// intilaze function
+void USART_voidInit()
+{
+	UBRRL  =  (u8) BAUDRATE ; // send the first (low) 8 bits of UBRR
+	UBRRH  =  ((u8)BAUDRATE >> 8) ; // shift right and sends the high 8 bits of UBRR 
+	UCSRB |= (( 1 << 4 ) | ( 1 << 3 )) ; // enable TX and RX in USART to send and recieve
+	UCSRC |= (1 << 7);
+	UCSRC |= (( 1 << 1 ) | ( 1 << 2 ) ) ; // 8 bits data frame , 1 stop bits ,parity mode disabled , Asynchorouns USART
+}
+
+
+// function to transmit the data
+void USART_voidTransmitdata( u8 data) 
+{	
+	while ( !(GET_BIT(UCSRA,5)) ) ; // wait unti buffer becomes equal to one (empty)
+	UDR = data ;
+}
+	
+// function to read the data
+u8 USART_voidRecievedata() 
+{
+	while ( !(GET_BIT(UCSRA,7)) ) ; // wait until the recieve compelete and becomes one 
+	return UDR ;
+}
+	
+	// function to send string
+void USART_voidTransmitString(u8 *TransmitedString)
+{
+	u8 i = 0;
+	while(TransmitedString[i] != '\0')
+	{
+		USART_voidTransmitdata(TransmitedString[i++]);
+	}
+}
+	// function to recieve string
+void USART_voidRecieveString(u8 *ReceivedString)
+{
+	u8 i = 0;
+	u8 C = USART_voidRecievedata();
+	while(C != '#')
+	{
+		ReceivedString[i++] = C;
+		C = USART_voidRecievedata();
+	}
+	ReceivedString[i] = '\0' ;
+}
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+

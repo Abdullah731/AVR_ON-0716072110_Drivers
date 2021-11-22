@@ -1,0 +1,20 @@
+/*********************************************************************************************/
+/*	File name	:	USART_interface.h
+/*	Date		:	13, JAN 2020
+/*	Version		:	v1.0
+/*	Description	:	This file will contains all public data for USART driver
+/*********************************************************************************************/
+
+
+#ifndef	USART_INTERFACE_H
+#define	USART_INTERFACE_H
+
+#define BAUDRATE    (FOSC/8/BAUD - 1)
+
+void USART_voidInit(void);
+void USART_voidTransmitdata(u8) ;
+u8   USART_voidRecievedata(void) ;
+void USART_voidTransmitString(u8 *);
+void USART_voidRecieveString(u8 *);
+
+#endif

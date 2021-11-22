@@ -1,0 +1,25 @@
+#include "../[0] LIB/STD_TYPES.h"
+#include "../[0] LIB/BIT_MATH.h"
+#include "../[1] MCAL/[0] GPIO/GPIO_interface.h"
+#include "../[1] MCAL/[2] TIMER/TIMER_interface.h"
+#include "../[1] MCAL/[4] USART/USART_interface.h"
+#include "../[1] MCAL/[1] ADC/ADC_config.h"
+
+#define F_CPU 16000000UL
+
+int main(void)
+{
+	TIMER_voidInit();
+	USART_voidInit();
+	ADC_Init_temp();
+	GPIO_voidSetPinDirection(PORTA, PIN0, GPIO_INPUT);
+	GPIO_voidSetPinDirection(PORTD, PIN0, GPIO_INPUT);
+	GPIO_voidSetPinDirection(PORTD, PIN1, GPIO_OUTPUT);
+	while(1)
+	{
+		USART_voidTransmitNumber('1');
+		USART_voidTransmitStringCharacter("\r\n");
+		TIMER_voidSetBusyWait(1000);
+	}
+	return 0;
+}

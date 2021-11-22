@@ -1,0 +1,67 @@
+21:28:49 **** Incremental Build of configuration Debug for project Get_Data_From_Sensors ****
+make all 
+Building file: ../[4] APP/main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"[4] APP/main.d" -MT"[4]\ APP/main.d" -c -o "[4] APP/main.o" "../[4] APP/main.c"
+In file included from ../[4] APP/main.c:1:
+../[4] APP/../[0] LIB/STD_TYPES.h:3:1: warning: "/*" within comment
+../[4] APP/../[0] LIB/STD_TYPES.h:4:1: warning: "/*" within comment
+../[4] APP/../[0] LIB/STD_TYPES.h:5:1: warning: "/*" within comment
+../[4] APP/../[0] LIB/STD_TYPES.h:6:1: warning: "/*" within comment
+In file included from ../[4] APP/main.c:2:
+../[4] APP/../[0] LIB/BIT_MATH.h:3:1: warning: "/*" within comment
+../[4] APP/../[0] LIB/BIT_MATH.h:4:1: warning: "/*" within comment
+../[4] APP/../[0] LIB/BIT_MATH.h:5:1: warning: "/*" within comment
+../[4] APP/../[0] LIB/BIT_MATH.h:6:1: warning: "/*" within comment
+In file included from ../[4] APP/main.c:3:
+../[4] APP/../[1] MCAL/[0] GPIO/GPIO_interface.h:3:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[0] GPIO/GPIO_interface.h:4:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[0] GPIO/GPIO_interface.h:5:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[0] GPIO/GPIO_interface.h:6:1: warning: "/*" within comment
+In file included from ../[4] APP/main.c:4:
+../[4] APP/../[1] MCAL/[2] TIMER/TIMER_interface.h:3:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[2] TIMER/TIMER_interface.h:4:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[2] TIMER/TIMER_interface.h:5:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[2] TIMER/TIMER_interface.h:7:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[2] TIMER/TIMER_interface.h:80:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+In file included from ../[4] APP/main.c:5:
+../[4] APP/../[1] MCAL/[4] USART/USART_interface.h:3:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[4] USART/USART_interface.h:4:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[4] USART/USART_interface.h:5:1: warning: "/*" within comment
+../[4] APP/../[1] MCAL/[4] USART/USART_interface.h:6:1: warning: "/*" within comment
+../[4] APP/main.c: In function 'main':
+../[4] APP/main.c:21: warning: pointer targets in passing argument 1 of 'USART_voidTransmitStringCharacter' differ in signedness
+Finished building: ../[4] APP/main.c
+ 
+Building target: Get_Data_From_Sensors.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Get_Data_From_Sensors.map -mmcu=atmega16 -o "Get_Data_From_Sensors.elf"  ./[4]\ APP/main.o  ./[1]\ MCAL/[4]\ USART/USART_program.o  ./[1]\ MCAL/[2]\ TIMER/TIMER_program.o  ./[1]\ MCAL/[1]\ ADC/ADC_Functions.o  ./[1]\ MCAL/[0]\ GPIO/GPIO_program.o   
+Finished building target: Get_Data_From_Sensors.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Get_Data_From_Sensors.elf  >"Get_Data_From_Sensors.lss"
+Finished building: Get_Data_From_Sensors.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Get_Data_From_Sensors.elf  "Get_Data_From_Sensors.hex"
+Finished building: Get_Data_From_Sensors.hex
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 Get_Data_From_Sensors.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6552 bytes (40.0% Full)
+(.text + .data + .bootloader)
+
+Data:         18 bytes (1.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+21:28:51 Build Finished (took 1s.32ms)
+

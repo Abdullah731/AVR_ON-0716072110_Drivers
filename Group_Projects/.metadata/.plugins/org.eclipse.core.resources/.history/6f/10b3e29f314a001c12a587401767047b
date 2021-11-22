@@ -1,0 +1,93 @@
+#include "../../LIB/STD_TYPES.h"
+#include "../../LIB/BIT_MATH.h"
+
+
+#include "USART_interface.h"
+#include "USART_private.h"
+#include "USART_config.h"
+
+
+void USART_voidInit(void)
+{
+	/*Select UCSRC*/
+	SET_BIT(UCSRC, UCSRC_URSEL);
+	/*Set the USART in Asynch mode*/
+	CLR_BIT(UCSRC, UCSRC_UMSEL);
+	
+	/*Data = 8-bit*/
+	SET_BIT(UCSRC, UCSRC_UCSZ0);
+	SET_BIT(UCSRC, UCSRC_UCSZ1);
+	CLR_BIT(UCSRB, UCSRB_UCSZ2);
+
+	/*Parity Disabled*/
+	CLR_BIT(UCSRC, UCSRC_UPM0);
+	CLR_BIT(UCSRC, UCSRC_UPM1);
+	
+	/*Stop = 1-bit*/
+	CLR_BIT(UCSRC, UCSRC_USBS);
+	
+	/*Set the baudrate to be 9600*/
+	UBRRL = 51;
+	
+	/*Enable Transmitter & Receiver */
+	SET_BIT(UCSRB, UCSRB_TXEN);
+	SET_BIT(UCSRB, UCSRB_RXEN);
+}
+
+
+
+
+void USART_voidSendCharacterSynch(u8 Copy_u8Data)
+{
+
+	while(GET_BIT(UCSRA, UCSRA_UDRE) == 0);
+	UDR = Copy_u8Data;
+	
+}
+
+
+void USART_voidReceiveCharacterSynch(u8 * Copy_pu8ReceivedCharacter)
+{
+	while(GET_BIT(UCSRA, UCSRA_RXC) == 0);
+	*Copy_pu8ReceivedCharacter = UDR;
+}
+
+static void (*USART_pvNotificationFunction)(void) = NULL;
+
+void USART_voidReceiveSetCallBack(void (*Copy_pvNotificationFunction)(void))
+{
+	USART_pvNotificationFunction = Copy_pvNotificationFunction;
+}
+
+void __vector_13 (void) __attribute__((signal));
+void __vector_13 (void)
+{
+	if(USART_pvNotificationFunction != NULL)
+	{
+		USART_pvNotificationFunction();
+	}
+	else
+	{
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

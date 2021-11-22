@@ -1,0 +1,71 @@
+13:01:37 **** Incremental Build of configuration Debug for project DIO_Test ****
+make all 
+Building file: ../MCAL/GIE/GIE_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"MCAL/GIE/GIE_program.d" -MT"MCAL/GIE/GIE_program.o" -c -o "MCAL/GIE/GIE_program.o" "../MCAL/GIE/GIE_program.c"
+Finished building: ../MCAL/GIE/GIE_program.c
+ 
+Building file: ../MCAL/EXTI/EXTI_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"MCAL/EXTI/EXTI_program.d" -MT"MCAL/EXTI/EXTI_program.o" -c -o "MCAL/EXTI/EXTI_program.o" "../MCAL/EXTI/EXTI_program.c"
+In file included from ../MCAL/EXTI/EXTI_program.c:6:
+../MCAL/EXTI/EXTI_private.h:27:1: warning: "NULL" redefined
+In file included from ../MCAL/EXTI/EXTI_program.c:1:
+../MCAL/EXTI/../../LIB/STD_TYPES.h:17:1: warning: this is the location of the previous definition
+Finished building: ../MCAL/EXTI/EXTI_program.c
+ 
+Building file: ../MCAL/DIO/DIO_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"MCAL/DIO/DIO_program.d" -MT"MCAL/DIO/DIO_program.o" -c -o "MCAL/DIO/DIO_program.o" "../MCAL/DIO/DIO_program.c"
+Finished building: ../MCAL/DIO/DIO_program.c
+ 
+Building file: ../MCAL/ADC/ADC_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"MCAL/ADC/ADC_program.d" -MT"MCAL/ADC/ADC_program.o" -c -o "MCAL/ADC/ADC_program.o" "../MCAL/ADC/ADC_program.c"
+Finished building: ../MCAL/ADC/ADC_program.c
+ 
+Building file: ../HAL/LCD/LCD_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"HAL/LCD/LCD_program.d" -MT"HAL/LCD/LCD_program.o" -c -o "HAL/LCD/LCD_program.o" "../HAL/LCD/LCD_program.c"
+In file included from ../HAL/LCD/LCD_program.c:15:
+d:/embedded systems/imt/imt_arm_data/02- tools/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../HAL/LCD/LCD_program.c
+ 
+Building file: ../HAL/KPD/KPD_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"HAL/KPD/KPD_program.d" -MT"HAL/KPD/KPD_program.o" -c -o "HAL/KPD/KPD_program.o" "../HAL/KPD/KPD_program.c"
+Finished building: ../HAL/KPD/KPD_program.c
+ 
+Building file: ../APP/main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"APP/main.d" -MT"APP/main.o" -c -o "APP/main.o" "../APP/main.c"
+../APP/main.c:6: warning: return type of 'main' is not 'int'
+Finished building: ../APP/main.c
+ 
+Building target: DIO_Test.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,DIO_Test.map -mmcu=atmega32 -o "DIO_Test.elf"  ./MCAL/GIE/GIE_program.o  ./MCAL/EXTI/EXTI_program.o  ./MCAL/DIO/DIO_program.o  ./MCAL/ADC/ADC_program.o  ./HAL/LCD/LCD_program.o  ./HAL/KPD/KPD_program.o  ./APP/main.o   
+Finished building target: DIO_Test.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S DIO_Test.elf  >"DIO_Test.lss"
+Finished building: DIO_Test.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 DIO_Test.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    8274 bytes (25.3% Full)
+(.text + .data + .bootloader)
+
+Data:         30 bytes (1.5% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+13:01:42 Build Finished (took 4s.538ms)
+

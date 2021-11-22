@@ -1,0 +1,41 @@
+20:14:33 **** Incremental Build of configuration Debug for project aa ****
+make all 
+Building file: ../APP/main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"APP/main.d" -MT"APP/main.o" -c -o "APP/main.o" "../APP/main.c"
+In file included from ../APP/main.c:7:
+d:/embedded systems/imt/imt_arm_data/02- tools/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../APP/main.c:8: warning: return type of 'main' is not 'int'
+Finished building: ../APP/main.c
+ 
+Building target: aa.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,aa.map -mmcu=atmega32 -o "aa.elf"  ./MCAL/DIO/DIO_program.o  ./APP/main.o   
+Finished building target: aa.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S aa.elf  >"aa.lss"
+Finished building: aa.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex aa.elf  "aa.hex"
+Finished building: aa.hex
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 aa.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    5724 bytes (17.5% Full)
+(.text + .data + .bootloader)
+
+Data:          8 bytes (0.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+20:14:34 Build Finished (took 829ms)
+
